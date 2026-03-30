@@ -25,9 +25,12 @@
 	},
 
 	// ==========================================================================
-	// VSCode Customizations
+	//  Customizations
 	// ==========================================================================
 	"customizations": {
+		"coder": {
+			"name": ".NET Backend Dev Container"
+		},
 		// Configure properties specific to VS Code.
 		"vscode": {
 			"settings": {},
