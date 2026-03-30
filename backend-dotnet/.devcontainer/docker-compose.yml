@@ -1,0 +1,49 @@
+# ==============================================================================
+# Backend Dotnet Dev Container - Docker Compose Configuration
+# ==============================================================================
+# This Docker Compose file orchestrates multiple services required for local development
+# - app: Main development container with .NET 8 SDK
+# - postgres: PostgreSQL database for application data storage
+# - pgadmin: Web-based PostgreSQL administration tool
+
+services:
+  # ----------------------------------------------------------------------------
+  # Main Development Container
+  # ----------------------------------------------------------------------------
+  sdk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dotnet-sdk
+    # Keep the container running 
+    command: sleep infinity
+    # Dependencies - ensure the database is available before starting the app container
+    depends_on:
+      - postgres
+
+  # ----------------------------------------------------------------------------
+  # PostgreSQL Database
+  # ----------------------------------------------------------------------------
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB=dbtest
+      POSTGRES_USER=admin
+      POSTGRES_PASSWORD=password
+
+  # ----------------------------------------------------------------------------
+  # PostgreSQL Administration Tool
+  # ----------------------------------------------------------------------------
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - 8888:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD=password

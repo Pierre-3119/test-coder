@@ -3,16 +3,13 @@
 	// ==========================================================================
 	// Backend Dotnet Dev Container
 	// ==========================================================================
-
 	"name": "Backend Dotnet Dev Container",
 
 	// ==========================================================================
 	// Docker Compose Configuration
 	// ==========================================================================
-	"build": {
-		// Path is relative to the devcontainer.json file.
-		"dockerfile": "Dockerfile"
-    },
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "sdk",
 	"mounts": [
 		"source=${localEnv:HOME}/application,target=/workspace/application,type=bind"
 	],
@@ -47,7 +44,8 @@
 	// ==========================================================================
 	// Automaticaly forward these ports from the container to the host.
 	"forwardPorts": [
-			5432
+			5432,
+			8888
 	],
 
 	// Use 'portsAttributes' to set default properties for specific forwarded ports. 
@@ -55,6 +53,10 @@
 	"portsAttributes": {
 		"5432": {
 			"label": "PostgreSQL",
+			"onAutoForward": "silent"
+		},
+		"8888": {
+			"label": "pgAdmin",
 			"onAutoForward": "silent"
 		}
 	},
