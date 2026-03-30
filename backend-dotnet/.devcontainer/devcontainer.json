@@ -8,11 +8,11 @@
 	// ==========================================================================
 	// Docker Compose Configuration
 	// ==========================================================================
-	// "dockerComposeFile": "docker-compose.yml",
-	// "service": "sdk",
-	"build" : {
-		"dockerfile": "Dockerfile"	
-	}, 
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "sdk",
+	// "build" : {
+	// 	"dockerfile": "Dockerfile"	
+	// }, 
 	"mounts": [
 		"source=${localEnv:HOME}/application,target=/workspace/application,type=bind"
 	],
