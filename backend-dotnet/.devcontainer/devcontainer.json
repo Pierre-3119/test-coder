@@ -1,54 +1,63 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
+// For format details, see https://aka.ms/devcontainer.json.
 {
-	"name": "Backend dotnet dev container",
+	// ==========================================================================
+	// Backend Dotnet Dev Container
+	// ==========================================================================
 
-    "build": {
-        // Path is relative to the devcontainer.json file.
-        "dockerfile": "Dockerfile"
+	"name": "Backend Dotnet Dev Container",
+
+	// ==========================================================================
+	// Docker Compose Configuration
+	// ==========================================================================
+	"build": {
+		// Path is relative to the devcontainer.json file.
+		"dockerfile": "Dockerfile"
     },
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	"features": 
-	{
-		"ghcr.io/devcontainers/features/docker-in-docker": { "version": "29.3.1-1~debian.12~bookworm", "moby": false}
-	},
-
 	"mounts": [
 		"source=${localEnv:HOME}/application,target=/workspace/application,type=bind"
 	],
-
 	"workspaceFolder": "/workspace/application",
 
-	// Configure tool-specific properties.
-	// "customizations": {
-	// 	// Configure properties specific to VS Code.
-	// 	"vscode": {
-	// 		"settings": {},
-	// 		"extensions": [
-	// 			"streetsidesoftware.code-spell-checker"
-	// 		]
-	// 	}
-	// },
+	// ==========================================================================
+	// Container Features More info: https://containers.dev/features.
+	// ==========================================================================
+	"features": 
+	{
+		// Install Docker in Docker to allow running Docker commands within the container.
+		"ghcr.io/devcontainers/features/docker-in-docker": { "version": "29.3.1-1~debian.12~bookworm", "moby": false}
+	},
+
+	// ==========================================================================
+	// VSCode Customizations
+	// ==========================================================================
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"github.copilot",
+				"github.copilot-chat"
+			]
+		}
+	},
+
+	// ==========================================================================
+	// Port Forwarding
+	// ==========================================================================
+	// Automaticaly forward these ports from the container to the host.
+	"forwardPorts": [
+			5432
+	],
 
 	// Use 'portsAttributes' to set default properties for specific forwarded ports. 
 	// More info: https://containers.dev/implementors/json_reference/#port-attributes
-	// "portsAttributes": {
-	// 	"5000": {
-	// 		"label": "Hello Remote World",
-	// 		"onAutoForward": "notify"
-	// 	},
-	// 	"5001": {
-	// 		"protocol": "https"
-	// 	}
-	// },
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5000, 5001],
+	"portsAttributes": {
+		"5432": {
+			"label": "PostgreSQL",
+			"onAutoForward": "silent"
+		}
+	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "dotnet --version"
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
 }
