@@ -15,8 +15,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: dotnet-container
-    depends_on:
-      - postgres
+    # depends_on:
+    #   - postgres
 
   # ----------------------------------------------------------------------------
   # PostgreSQL Database
