@@ -29,7 +29,7 @@
 	// ==========================================================================
 	"customizations": {
 		"coder": {
-			"name": ".NET Backend Dev Container"
+			"name": "Dotnet-Backend"
 		},
 		// Configure properties specific to VS Code.
 		"vscode": {
