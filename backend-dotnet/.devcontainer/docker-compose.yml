@@ -14,35 +14,35 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: dotnet-sdk
+    container_name: dotnet-container
     depends_on:
       - postgres
 
   # ----------------------------------------------------------------------------
   # PostgreSQL Database
   # ----------------------------------------------------------------------------
-  postgres:
-    image: postgres
-    restart: always
-    container_name: postgres
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_DB=dbtest
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
+  # postgres:
+  #   image: postgres
+  #   restart: always
+  #   container_name: postgres
+  #   ports:
+  #     - 5432:5432
+  #   environment:
+  #     - POSTGRES_DB=dbtest
+  #     - POSTGRES_USER=admin
+  #     - POSTGRES_PASSWORD=password
 
-  # ----------------------------------------------------------------------------
-  # PostgreSQL Administration Tool
-  # ----------------------------------------------------------------------------
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    restart: always
-    ports:
-      - 8888:80
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=password
-    depends_on:
-      - postgres
+  # # ----------------------------------------------------------------------------
+  # # PostgreSQL Administration Tool
+  # # ----------------------------------------------------------------------------
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin
+  #   restart: always
+  #   ports:
+  #     - 8888:80
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+  #     - PGADMIN_DEFAULT_PASSWORD=password
+  #   depends_on:
+  #     - postgres
