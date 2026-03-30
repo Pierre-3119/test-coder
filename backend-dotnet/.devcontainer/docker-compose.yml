@@ -15,9 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: dotnet-sdk
-    # Keep the container running 
     command: sleep infinity
-    # Dependencies - ensure the database is available before starting the app container
     depends_on:
       - postgres
 
@@ -31,9 +29,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB=dbtest
-      POSTGRES_USER=admin
-      POSTGRES_PASSWORD=password
+      - POSTGRES_DB=dbtest
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
 
   # ----------------------------------------------------------------------------
   # PostgreSQL Administration Tool
@@ -45,5 +43,7 @@ services:
     ports:
       - 8888:80
     environment:
-      PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD=password
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    depends_on:
+      - postgres
