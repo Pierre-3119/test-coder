@@ -34,7 +34,7 @@ A fully-configured development environment running in Docker. This provides a co
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Dev Container (app)                      │
-│  .NET 8 SDK                                                    │
+│  .NET 8 SDK                                                 │
 │  Workspace mounted at /workspace/application                │
 └──────────────────────┬──────────────────────────────────────┘
                        │
@@ -90,6 +90,15 @@ Configures:
 - Editor settings (format on save, TypeScript SDK)
 - Lifecycle commands (postCreate, postStart)
 
+
+## Service Access
+
+### PostgreSQL
+
+```bash
+psql -h postgres -U admin -d dbtest
+```
+
 ## Troubleshooting
 
 ### Container Won't Start
@@ -101,13 +110,6 @@ Configures:
 ### Port Already in Use
 
 Stop conflicting services on your host machine, or modify port mappings in `docker-compose.yml`.
-
-### Nx Commands Fail
-
-```bash
-pnpm install    # Reinstall dependencies
-nx reset        # Clear Nx cache
-```
 
 ### Complete Reset
 
