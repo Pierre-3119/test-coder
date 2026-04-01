@@ -16,35 +16,34 @@ services:
       dockerfile: Dockerfile
     container_name: dotnet-container
     command: /bin/sh -c "while sleep 1000; do :; done"
-    # command: /bin/sh -c 'echo Container started\ntrap \"exit 0\" 15\n/usr/local/share/docker-init.sh\nexec \"$@\"\nwhile sleep 1 & wait $!; do :; done' -
-    # depends_on:
-    #   - postgres
+    depends_on:
+      - postgres
 
   # ----------------------------------------------------------------------------
   # PostgreSQL Database
   # ----------------------------------------------------------------------------
-  # postgres:
-  #   image: postgres
-  #   restart: always
-  #   container_name: postgres
-  #   ports:
-  #     - 5432:5432
-  #   environment:
-  #     - POSTGRES_DB=dbtest
-  #     - POSTGRES_USER=admin
-  #     - POSTGRES_PASSWORD=password
+  postgres:
+    image: postgres
+    restart: always
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=dbtest
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
 
   # # ----------------------------------------------------------------------------
   # # PostgreSQL Administration Tool
   # # ----------------------------------------------------------------------------
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: pgadmin
-  #   restart: always
-  #   ports:
-  #     - 8888:80
-  #   environment:
-  #     - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-  #     - PGADMIN_DEFAULT_PASSWORD=password
-  #   depends_on:
-  #     - postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - 8888:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    depends_on:
+      - postgres
