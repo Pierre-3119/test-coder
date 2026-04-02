@@ -51,7 +51,9 @@
 	// Automaticaly forward these ports from the container to the host.
 	"forwardPorts": [
 			5432,
-			8888
+			8888,
+			1389,
+			8081
 	],
 
 	// Use 'portsAttributes' to set default properties for specific forwarded ports. 
@@ -63,6 +65,14 @@
 		},
 		"8888": {
 			"label": "pgAdmin",
+			"onAutoForward": "silent"
+		},
+		"1389": {
+			"label": "LDAP",
+			"onAutoForward": "silent"
+		},
+		"8081": {
+			"label": "phpLDAPadmin",
 			"onAutoForward": "silent"
 		}
 	},

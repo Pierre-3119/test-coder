@@ -1,0 +1,129 @@
+# User password is stored into unicodePwd field, and is generated as Base64-decoded value in UTF-16 format, e.g.
+# 
+# echo -n '"Passw0rd"' | iconv -f UTF-8 -t UTF-16LE | base64 -w 0
+
+# OU People
+dn: OU=People,DC=mycorp,DC=corp
+objectClass: organizationalUnit
+ou: People
+
+# OU Groups
+dn: OU=Groups,DC=mycorp,DC=corp
+objectClass: organizationalUnit
+ou: Groups
+
+# User 1 - Jdoe
+dn: CN=jdoe,OU=People,DC=mycorp,DC=corp
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+cn: jdoe
+sn: Doe
+title: jdoe
+givenName: John
+distinguishedName: CN=jdoe,OU=People,DC=mycorp,DC=corp
+instanceType: 4
+displayName: John Doe
+company: Example LLC
+name: jdoe
+userAccountControl: 512
+badPwdCount: 0
+lastLogoff: 0
+sAMAccountName: jdoe
+userPrincipalName: testuser@mycorp.corp
+lockoutTime: 0
+mail: test.user@mycorp.corp
+unicodePwd:: IgBwAGEAcwBzAHcAbwByAGQAIgA=
+
+# User 2 - Jroe
+dn: CN=jroe,OU=People,DC=mycorp,DC=corp
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+cn: jroe
+sn: Roe
+title: jroe
+givenName: John
+distinguishedName: CN=jroe,OU=People,DC=mycorp,DC=corp
+instanceType: 4
+displayName: John Roe
+company: Example LLC
+name: jdoe
+userAccountControl: 512
+badPwdCount: 0
+lastLogoff: 0
+sAMAccountName: jroe
+userPrincipalName: testuser2@mycorp.corp
+lockoutTime: 0
+mail: test.user2@mycorp.corp
+unicodePwd:: IgBwAGEAcwBzAHcAbwByAGQAIgA=
+
+# User 3 - Mcurie
+dn: CN=mcurie,OU=People,DC=mycorp,DC=corp
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+cn: mcurie
+sn: Curie
+title: mcurie
+givenName: Marie
+distinguishedName: CN=mcurie,OU=People,DC=mycorp,DC=corp
+instanceType: 4
+displayName: Marie Curie
+company: Example LLC
+name: mcurie
+userAccountControl: 512
+badPwdCount: 0
+lastLogoff: 0
+sAMAccountName: mcurie
+userPrincipalName: testuser3@mycorp.corp
+lockoutTime: 0
+mail: test.user3@mycorp.corp
+unicodePwd:: IgBwAGEAcwBzAHcAbwByAGQAIgA=
+
+# Groupe Administrators
+dn: CN=Administrators,OU=Groups,DC=mycorp,DC=corp
+objectClass: top
+objectClass: group
+cn: Administrators
+groupType: -2147483646
+
+# Groupe Developers
+dn: CN=Developers,OU=Groups,DC=mycorp,DC=corp
+objectClass: top
+objectClass: group
+cn: Developers
+groupType: -2147483646
+
+dn: CN=Developers,OU=Groups,DC=mycorp,DC=corp
+changetype: modify
+add: member
+member: CN=jdoe,OU=People,DC=mycorp,DC=corp
+-
+
+dn: CN=Administrators,OU=Groups,DC=mycorp,DC=corp
+changetype: modify
+add: member
+member: CN=jdoe,OU=People,DC=mycorp,DC=corp
+-
+
+dn: CN=Developers,OU=Groups,DC=mycorp,DC=corp
+changetype: modify
+add: member
+member: CN=jroe,OU=People,DC=mycorp,DC=corp
+-
+
+dn: CN=Developers,OU=Groups,DC=mycorp,DC=corp
+changetype: modify
+add: member
+member: CN=mcurie,OU=People,DC=mycorp,DC=corp
+-
+
+dn: CN=Administrators,OU=Groups,DC=mycorp,DC=corp
+changetype: modify
+add: member
+member: CN=mcurie,OU=People,DC=mycorp,DC=corp
+-

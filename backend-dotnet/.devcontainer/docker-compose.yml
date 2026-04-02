@@ -33,9 +33,9 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=password
 
-  # # ----------------------------------------------------------------------------
-  # # PostgreSQL Administration Tool
-  # # ----------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------
+  # PostgreSQL Administration Tool
+  # ----------------------------------------------------------------------------
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
@@ -47,3 +47,38 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=password
     depends_on:
       - postgres
+
+  # ----------------------------------------------------------------------------
+  # LDAP Server for Authentication
+  # ----------------------------------------------------------------------------
+  ldap:
+    cap_add:
+      - SYS_ADMIN
+      - DAC_READ_SEARCH
+    image: mnorsic/samba-ad
+    container_name: ldap
+    environment:
+      - REALM=MYCORP.CORP
+      - DOMAIN=MYCORP
+      - DOMAIN_DN=DC=mycorp,DC=corp
+      - ADMINPASS=LocalPass!
+    volumes:
+      - ./conf/ldap:/ldif:ro
+    ports:
+      - "1389:389"
+    restart: unless-stopped
+
+  # ----------------------------------------------------------------------------
+  # LDAP Administration Tool
+  # ----------------------------------------------------------------------------
+  phpldapadmin:
+    image: osixia/phpldapadmin:latest
+    container_name: phpldapadmin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: ldap
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+    depends_on:
+      - ldap

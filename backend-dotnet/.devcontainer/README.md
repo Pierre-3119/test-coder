@@ -55,12 +55,6 @@ A fully-configured development environment running in Docker. This provides a co
 | PostgreSQL  | 5432 | localhost:5432        | Database                  |
 | PgAdmin     | 8000 | localhost:8888        | Local DynamoDB            |
 
-### Data Persistence
-
-All database data is stored in Docker volumes and persists across container restarts:
-
-- `postgres-data` - PostgreSQL database files
-
 ## File Structure
 
 ```
