@@ -45,7 +45,7 @@ A fully-configured development environment running in Docker. This provides a co
          ▼             ▼          ▼               ▼
    ┌──────────┐  ┌──────────┐ ┌──────────┐  ┌───────────────┐
    │PostgreSQL│  │ PgAdmin  │ │   Ldap   │  │  phpLDAPadmin │
-   │  :5432   │  │  :8888   │ │  :1389   │  │     :8081     │
+   │  :5432   │  │  :8888   │ │  :389   │  │     :8081     │
    └──────────┘  └──────────┘ └──────────┘  └───────────────┘
       Local         Local        Local           Local
 ```
@@ -56,7 +56,7 @@ A fully-configured development environment running in Docker. This provides a co
 | ------------- | ---- | --------------------- | ------------------------- |
 | PostgreSQL    | 5432 | localhost:5432        | Database                  |
 | PgAdmin       | 8888 | localhost:8888        | Database admin UI         |
-| Ldap          | 1389 | localhost:1389        | Ldap                      |
+| Ldap          | 389 | localhost:389        | Ldap                      |
 | phpLDAPadmin  | 8081 | localhost:8081        | Ldap admin UI             |
 
 ## File Structure
