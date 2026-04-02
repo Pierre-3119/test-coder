@@ -104,7 +104,7 @@ PGPASSWORD="LocalPass!" psql -h postgres -U admin -d dbtest
 ### LDAP
 
 ```bash
-ldapsearch -x -H ldap://ldap:1389 -D "cn=Administrator,cn=Users,dc=mycorp,dc=corp" -w "LocalPass!" -b "dc=mycorp,dc=corp"
+ldapsearch -x -H ldap://ldap:389 -D "cn=Administrator,cn=Users,dc=mycorp,dc=corp" -w "LocalPass!" -b "dc=mycorp,dc=corp"
 
 ```
 
