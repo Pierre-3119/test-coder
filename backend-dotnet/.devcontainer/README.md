@@ -8,7 +8,9 @@ A fully-configured development environment running in Docker. This provides a co
 | ------------------- | ----------------------------------------------------------- |
 | **.NET 8**          | JavaScript runtime with pnpm and Nx pre-installed           |
 | **PostgreSQL 15**   | Relational database with persistent storage                 |
-| **PgAdmin 5**       | Local AWS DynamoDB instance for testing                     |
+| **PgAdmin 5**       | Web-based PostgreSQL administration UI                      |
+| **LDAP**            | Samba Active Directory                                      |
+| **phpLDAPadmin**    | Web-based LDAP administration UI                            |
 
 ## Prerequisites
 
@@ -38,27 +40,30 @@ A fully-configured development environment running in Docker. This provides a co
 │  Workspace mounted at /workspace/application                │
 └──────────────────────┬──────────────────────────────────────┘
                        │
-         ┌─────────────┼
-         │             │  
-         ▼             ▼  
-   ┌──────────┐  ┌──────────┐
-   │PostgreSQL│  │ PgAdmin  │
-   │  :5432   │  │  :8888   │
-   └──────────┘  └──────────┘
-      Local         Local
+         ┌─────────────┼──────────────────────────┐
+         │             │          │               │ 
+         ▼             ▼          ▼               ▼
+   ┌──────────┐  ┌──────────┐ ┌──────────┐  ┌───────────────┐
+   │PostgreSQL│  │ PgAdmin  │ │   Ldap   │  │  phpLDAPadmin │
+   │  :5432   │  │  :8888   │ │  :1389   │  │     :8081     │
+   └──────────┘  └──────────┘ └──────────┘  └───────────────┘
+      Local         Local        Local           Local
 ```
 
 ### Service Ports
 
-| Service     | Port | URL                   | Description               |
-| ----------- | ---- | --------------------- | ------------------------- |
-| PostgreSQL  | 5432 | localhost:5432        | Database                  |
-| PgAdmin     | 8000 | localhost:8888        | Local DynamoDB            |
+| Service       | Port | URL                   | Description               |
+| ------------- | ---- | --------------------- | ------------------------- |
+| PostgreSQL    | 5432 | localhost:5432        | Database                  |
+| PgAdmin       | 8888 | localhost:8888        | Database admin UI         |
+| Ldap          | 1389 | localhost:1389        | Ldap                      |
+| phpLDAPadmin  | 8081 | localhost:8081        | Ldap admin UI             |
 
 ## File Structure
 
 ```
 .devcontainer/
+├── conf                   # Configuration files (ldif ldap...)
 ├── devcontainer.json      # VSCode configuration (extensions, settings, ports)
 ├── docker-compose.yml     # Service orchestration (postgres, dynamodb)
 ├── Dockerfile             # Container image (.NET SDK)
@@ -74,6 +79,8 @@ Three services run together:
 1. **sdk** - Main development container where you work
 2. **postgres** - PostgreSQL 15 database
 3. **pgadmin** - PgAdmin 5
+4. **ldap** - LDAP server
+5. **phpldapadmin** - phpLDAPadmin
 
 ### VSCode Integration (devcontainer.json)
 
@@ -90,7 +97,15 @@ Configures:
 ### PostgreSQL
 
 ```bash
-psql -h postgres -U admin -d dbtest
+PGPASSWORD="LocalPass!" psql -h postgres -U admin -d dbtest
+
+```
+
+### LDAP
+
+```bash
+ldapsearch -x -H ldap://ldap:1389 -D "cn=Administrator,cn=Users,dc=mycorp,dc=corp" -w "LocalPass!" -b "dc=mycorp,dc=corp"
+
 ```
 
 ## Troubleshooting

@@ -31,7 +31,7 @@ services:
     environment:
       - POSTGRES_DB=dbtest
       - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=LocalPass!
 
   # ----------------------------------------------------------------------------
   # PostgreSQL Administration Tool
@@ -44,7 +44,7 @@ services:
       - 8888:80
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=password
+      - PGADMIN_DEFAULT_PASSWORD=LocalPass!
     depends_on:
       - postgres
 
