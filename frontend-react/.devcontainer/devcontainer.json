@@ -21,7 +21,7 @@
 	"features": 
 	{
 		// Install Docker in Docker to allow running Docker commands within the container.
-		"ghcr.io/devcontainers/features/docker-in-docker": { "version": "29.3.1-1~debian.12~bookworm", "moby": false}
+		"ghcr.io/devcontainers/features/docker-in-docker": { "version": "29.3.1-1~debian.13~trixie", "moby": false}
 	},
 
 	// ==========================================================================
