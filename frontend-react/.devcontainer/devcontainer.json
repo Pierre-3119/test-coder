@@ -1,0 +1,59 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	// ==========================================================================
+	// Frontend React Dev Container
+	// ==========================================================================
+	"name": "Frontend React Dev Container",
+
+	// ==========================================================================
+	// Docker Compose Configuration
+	// ==========================================================================
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "node",
+	"mounts": [
+		"source=${localEnv:HOME}/application,target=/workspace/application,type=bind"
+	],
+	"workspaceFolder": "/workspace/application",
+
+	// ==========================================================================
+	// Container Features More info: https://containers.dev/features.
+	// ==========================================================================
+	"features": 
+	{
+		// Install Docker in Docker to allow running Docker commands within the container.
+		"ghcr.io/devcontainers/features/docker-in-docker": { "version": "29.3.1-1~debian.12~bookworm", "moby": false}
+	},
+
+	// ==========================================================================
+	//  Customizations
+	// ==========================================================================
+	"customizations": {
+		"coder": {
+			"name": "frontend-react"
+		},
+		// Configure properties specific to VS Code.
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"github.copilot",
+				"github.copilot-chat",
+				"sonarsource.sonarlint-vscode"
+			]
+		}
+	},
+
+	// ==========================================================================
+	// Port Forwarding
+	// ==========================================================================
+	// Automaticaly forward these ports from the container to the host.
+	"forwardPorts": [
+	],
+
+	// Use 'portsAttributes' to set default properties for specific forwarded ports. 
+	// More info: https://containers.dev/implementors/json_reference/#port-attributes
+	"portsAttributes": {
+	},
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "node --version"
+}

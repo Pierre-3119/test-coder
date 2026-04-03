@@ -1,0 +1,16 @@
+# ==============================================================================
+# Frontend React Dev Container - Docker Compose Configuration
+# ==============================================================================
+# This Docker Compose file orchestrates multiple services required for local development
+# - node: Main development container with Node 22
+
+services:
+  # ----------------------------------------------------------------------------
+  # Main Development Container
+  # ----------------------------------------------------------------------------
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node-container
+    command: /bin/sh -c "while sleep 1000; do :; done"
