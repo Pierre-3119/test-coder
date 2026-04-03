@@ -5,6 +5,8 @@
 # - app: Main development container with .NET 8 SDK
 # - postgres: PostgreSQL database for application data storage
 # - pgadmin: Web-based PostgreSQL administration tool
+# - ldap: LDAP server for authentication
+# - phpldapadmin: Web-based LDAP administration tool
 
 services:
   # ----------------------------------------------------------------------------

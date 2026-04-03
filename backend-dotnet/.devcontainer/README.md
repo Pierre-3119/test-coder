@@ -6,7 +6,7 @@ A fully-configured development environment running in Docker. This provides a co
 
 | Component           | Description                                                 |
 | ------------------- | ----------------------------------------------------------- |
-| **.NET 8**          | JavaScript runtime with pnpm and Nx pre-installed           |
+| **.NET 8**          | .NET runtime and sdk                                        |
 | **PostgreSQL 15**   | Relational database with persistent storage                 |
 | **PgAdmin 5**       | Web-based PostgreSQL administration UI                      |
 | **LDAP**            | Samba Active Directory                                      |
