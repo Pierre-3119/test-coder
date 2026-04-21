@@ -11,7 +11,7 @@ tags: [docker, container, devcontainer]
 
 Provision Docker containers as [Coder workspaces](https://coder.com/docs/workspaces) running [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) via Docker-in-Docker.
 
-<!-- TODO: Add screenshot -->
+![./media/screen1.png](./media/screen1.png)
 
 ## Prerequisites
 
