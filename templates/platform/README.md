@@ -1,0 +1,1 @@
+Templates augmenté avec les devcontainer et les fichiers .agents
